@@ -3,6 +3,7 @@
 #include <functional>
 #include <memory>
 #include <string>
+#include <vector>
 
 #include "command.h"
 
@@ -17,9 +18,12 @@ public:
 
   void Parse(const std::string& cmd);
 
-private:
-  CommandFunc m_func;
+  static void Split(const std::string& in, 
+                    std::vector<std::string>& out,
+                    const std::string& delims = " ,");
 
+private:
+  CommandFunc m_cb;
 };
 
 } // end namespace robot

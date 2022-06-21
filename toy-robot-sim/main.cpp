@@ -23,7 +23,7 @@ int main(int argc, char* argv[]) {
     std::string cmd;
     std::getline(std::cin, cmd);
 
-    if (cmd.empty() || "QUIT" == cmd) break;
+    if (cmd.empty()) break;
 
     parser.Parse(cmd);
   }
