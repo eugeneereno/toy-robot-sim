@@ -23,7 +23,12 @@ void CommandParser::Parse(const std::string& cmd) {
   std::vector<std::string> args;
   Split(cmd, args);
 
-  if (args.empty() || args.size() > MAX_ARGS_SIZE || !m_cb) return;
+  if (!m_cb) return;
+
+  if (args.empty() || args.size() > MAX_ARGS_SIZE) {
+    std::cout << " --- INVALID COMMAND : " << cmd << std::endl;
+    return;
+  }
 
   std::string token = utils::ToUpper(args.front());
 
@@ -37,7 +42,7 @@ void CommandParser::Parse(const std::string& cmd) {
       m_cb(place);
     }
     catch (std::invalid_argument& ex) {
-      std::cout << " --- INVALID ARGS : " << ex.what() << std::endl;
+      std::cout << " --- INVALID PLACE ARGS : " << ex.what() << std::endl;
     }
   }
   else if ("MOVE" == token) {
