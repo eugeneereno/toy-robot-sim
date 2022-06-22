@@ -141,6 +141,7 @@
   <ItemGroup>
     <ClCompile Include="cmd_parser.cpp" />
     <ClCompile Include="command_move.cpp" />
+    <ClCompile Include="command_place.cpp" />
     <ClCompile Include="command_report.cpp" />
     <ClCompile Include="command_rotate.cpp" />
     <ClCompile Include="coordinates.cpp" />
@@ -154,6 +155,7 @@
     <ClInclude Include="cmd_parser.h" />
     <ClInclude Include="command.h" />
     <ClInclude Include="command_move.h" />
+    <ClInclude Include="command_place.h" />
     <ClInclude Include="command_report.h" />
     <ClInclude Include="command_rotate.h" />
     <ClInclude Include="coordinates.h" />
@@ -162,6 +164,7 @@
     <ClInclude Include="robot.h" />
     <ClInclude Include="rotation.h" />
     <ClInclude Include="boundary.h" />
+    <ClInclude Include="utils.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -1,10 +1,14 @@
 #include "cmd_parser.h"
 
 #include <iostream>
+#include <string>
 
 #include "command_move.h"
+#include "command_place.h"
 #include "command_report.h"
 #include "command_rotate.h"
+
+#include "utils.h"
 
 namespace robot
 {
@@ -21,10 +25,20 @@ void CommandParser::Parse(const std::string& cmd) {
 
   if (args.empty() || args.size() > MAX_ARGS_SIZE || !m_cb) return;
 
-  std::string token = args.front();
+  std::string token = utils::ToUpper(args.front());
 
   if ("PLACE" == token && MAX_ARGS_SIZE == args.size()) {
-  
+    try {
+      Placement placement;
+      placement.SetCoordinates(Coordinates(std::stoi(args.at(1)), std::stoi(args.at(2))));
+      placement.SetDirection(Direction(utils::ToUpper(args.at(3))));
+
+      std::shared_ptr<Command> place{ new PlaceCommand(placement) };
+      m_cb(place);
+    }
+    catch (std::invalid_argument& ex) {
+      std::cout << " --- INVALID ARGS : " << ex.what() << std::endl;
+    }
   }
   else if ("MOVE" == token) {
     std::shared_ptr<Command> move{ new MoveCommand() };
@@ -48,7 +62,9 @@ void CommandParser::Parse(const std::string& cmd) {
     std::shared_ptr<Command> report{ new ReportCommand() };
     m_cb(report);
   }
-  else { /*do nothing*/ }
+  else { 
+    std::cout << " --- INVALID COMMAND : " << cmd << std::endl;
+  }
 }
 
 void CommandParser::Split(
