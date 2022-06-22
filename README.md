@@ -35,7 +35,7 @@ REPORT
 
  ### Build
   - It is recommended to open and build the project with `Visual Studio 2019`.
-  - Press `F5` to build and run the application. Alternatively, you can just build the solution with the shortcut `Ctrl+Shift+B` then run the application as it is depending on your build configuration.
+  - Press `Ctrl+B` to build the main project `toy-robot-sim` and run the application. Please make sure that your build configuration is set `Application (.exe)`.
   ```
   .\Debug\toy-robot-sim.exe
 
@@ -44,6 +44,10 @@ REPORT
   .\Release\toy-robot-sim.exe
   ```
   - Input the simulator commands to the console.
+
+### Tests
+ - Building and running unit tests has some limitations. You may need to modify the `toy-robot-sim` project configuration to be compiled as a static library `.lib` instead of an application `.exe` as the library will be used by the Google Test Framework. You may update this by modifying `toy-robot-sim > Properties > Configuration Properties > General > Configuration Type`, then select that `Static library (.lib)` option.
+ - Press `Ctrl+Shift+B` to build the whole solution or alternatively, press `Ctrl+R,A` to build and run all of the tests.
 
 ## Examples
 
